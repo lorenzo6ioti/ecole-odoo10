@@ -1,0 +1,51 @@
+<odoo>
+    <data>
+<!--
+      <record id="ecole_section_demo1" model="ecole.section">
+        <field name="name">Economique</field>
+        <field name="eleve_ids" eval="[(4, ref('ecole_eleve_demo1', 'ecole_eleve_demo2'))]" />
+        <field name="cours_ids" eval="[(4, ref('ecole_cours_demo1', 'ecole_cours_demo2'))]"/>
+      </record>
+
+
+      <record id="ecole_eleve_demo1" model="ecole.eleve">
+        <field name="name">Nom1</field>
+        <field name="prenom">Prenom1</field>
+        <field name="age">18</field>
+        <field name="section_id" ref="ecole_section_demo1"/>
+      </record>
+
+      <record id="ecole_eleve_demo2" model="ecole.eleve">
+        <field name="name">Nom2</field>
+        <field name="prenom">Prenom2</field>
+        <field name="age">19</field>
+        <field name="section_id" ref="ecole_section_demo1"/>
+      </record>
+
+      <record id="ecole_prof_demo1" model="ecole.prof">
+        <field name="name">Valentin</field>
+        <field name="age">38</field>
+        <field name="retraite">True</field>
+        <field name="date_naissance" eval="(DateTime.today())"/>
+        <field name="section_id" ref="ecole_section_demo1"/>
+        <field name="cours_ids" eval="[(4, ref('ecole_cours_demo1', 'ecole_cours_demo2'))]"/>
+      </record>
+
+      <record id="ecole_cours_demo1" model="ecole.cours">
+        <field name="name">Math</field>
+        <field name="titulaire_id" ref="ecole_prof_demo1"/>
+        <field name="eleve_ids" eval="[(4, ref('ecole_eleve_demo1', 'ecole_eleve_demo2'))]"/>
+        <field name="nbPlaces">2</field>
+        <field name="date_debut" eval="(DateTime.today())"/>
+      </record>
+
+      <record id="ecole_cours_demo2" model="ecole.cours">
+        <field name="name">Francais</field>
+        <field name="titulaire_id" ref="ecole_eleve_demo1" />
+        <field name="eleve_ids" eval="[(4, ref('ecole_eleve_demo1', 'ecole_eleve_demo2'))]"/>
+        <field name="nbPlaces">2</field>
+        <field name="date_debut" eval="(DateTime.today())"/>
+      </record>
+-->
+    </data>
+</odoo>

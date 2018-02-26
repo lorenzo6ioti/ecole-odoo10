@@ -1,0 +1,316 @@
+<odoo>
+  <data>
+
+<!-- Professeurs -->
+
+    <record model="ir.ui.view" id="prof_form_view">
+      <field name="name">prof.form</field>
+      <field name="model">ecole.prof</field>
+      <field name="arch" type="xml">
+        <form string="Prof form">
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="age"/>
+              <field name="date_naissance"/>
+              <field name="retraite"/>
+              <field name="section_id"/>
+            </group>
+            <notebook>
+              <page string="Cours">
+                <field name="cours_ids">
+                  <tree>
+                    <field name="name"/>
+                    <field name="nbPlaces"/>
+                    <field name="taken_seats" widget="progressbar"/>
+                  </tree>
+                </field>
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+
+    <record model="ir.ui.view" id="prof_search_view">
+      <field name="name">prof.search</field>
+      <field name="model">ecole.prof</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name"/>
+        </search>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="prof_list_action">
+      <field name="name">Professeur</field>
+      <field name ="res_model">ecole.prof</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="help" type="html">
+        <p class="oe_view_nocontent_create">Create the first teacher
+        </p>
+      </field>
+    </record>
+
+    <menuitem id="main_ecole_menu" name="Ecole"/>
+    <menuitem id="ecole_menu" name="Ecole"
+              parent="main_ecole_menu"/>
+    <menuitem id="profs_menu" name="Professeurs" parent="ecole_menu"
+              action="prof_list_action" />
+
+
+
+<!-- Eleves -->
+
+    <record model="ir.ui.view" id="eleve_form_view">
+      <field name="name">eleve.form</field>
+      <field name="model">ecole.eleve</field>
+      <field name="arch" type="xml">
+        <form string="Eleve form">
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="prenom"/>
+              <field name="age"/>
+              <field name="section_id"/>
+            </group>
+            <notebook>
+              <page string="Cours">
+                <field name="cours_ids">
+                  <tree>
+                    <field name="name"/>
+                    <field name="nbPlaces"/>
+                    <field name="taken_seats" widget="progressbar"/>
+                  </tree>
+                </field>
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="eleve_search_view">
+      <field name="name">eleve.search</field>
+      <field name="model">ecole.eleve</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name"/>
+          <field name="prenom"/>
+        </search>
+      </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="eleve_list_action">
+      <field name="name">Eleves</field>
+      <field name="res_model">ecole.eleve</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="help" type="html">
+        <p class="oe_view_nocontent_create">Create the first student</p>
+      </field>
+    </record>
+
+    <menuitem id="eleve_view" name="Eleves"
+              parent="ecole_menu"
+              action="eleve_list_action"/>
+
+
+
+
+
+<!-- cours -->
+
+    <record model="ir.ui.view" id="cours_form_view">
+      <field name="name">cours.form</field>
+      <field name="model">ecole.cours</field>
+      <field name="arch" type="xml">
+        <form string="Cours form">
+        <!--  <header>
+            <button name="report_print" string="Print" type="object"/>
+          </header>-->
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="date_debut"/>
+              <field name="nbHeures"/>
+              <field name="nbEleves"/>
+              <field name="nbPlaces"/>
+              <field name="taken_seats" widget="progressbar"/>
+              <field name="titulaire_id"/>
+            </group>
+            <label for="eleve_ids"/>
+            <field name="eleve_ids"/>
+          </sheet>
+          <footer>
+            <button name="subscribe" type="object"
+                    string="Subscribe" class="oe_highlight"/>
+            or
+            <button special="cancel" string="Cancel"/>
+          </footer>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="cours_tree_view">
+      <field name="name">cours.tree</field>
+      <field name="model">ecole.cours</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="titulaire_id"/>
+          <field name="taken_seats" widget="progressbar"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="cours_search_view">
+      <field name="name">cours.search</field>
+      <field name="model">ecole.cours</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name"/>
+          <filter name="my_courses" string="My Courses"
+                  domain="[('titulaire_id', '=', uid)]"/>
+          <group string="Group By">
+            <filter name="by_responsible" string="Responsable"
+                    context="{'group_by': 'titulaire_id'}"/>
+          </group>
+        </search>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="cours_calendar_view">
+      <field name="name">cours.calendar</field>
+      <field name="model">ecole.cours</field>
+      <field name="arch" type="html">
+        <calendar string="Cours Calendar" date_start="date_debut" date_stop="date_fin" color="titulaire_id">
+          <field name="name"/>
+        </calendar>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="ecole_cours_graph_view">
+      <field name="name">ecole.cours.graph</field>
+      <field name="model">ecole.cours</field>
+      <field name="arch" type="xml">
+        <graph string="Participations par cours">
+          <field name="name"/>
+          <field name="nbEleves" type="measure"/>
+        </graph>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="cours_list_action">
+      <field name="name">Cours</field>
+      <field name="res_model">ecole.cours</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form,calendar,graph</field>
+      <field name="context" eval="{'search_default_my_courses': 1}"/>
+      <field name="help" type="html">
+        <p class="oe_view_nocontent_create">Create the first subject</p>
+      </field>
+    </record>
+
+    <menuitem id="cours_view" name="Cours"
+              parent="ecole_menu"
+              action="cours_list_action"/>
+
+
+
+<!-- Section -->
+
+
+              <record model="ir.ui.view" id="section_form_view">
+                <field name="name">section.form</field>
+                <field name="model">ecole.section</field>
+                <field name="arch" type="xml">
+                  <form string="Section form">
+                    <sheet>
+                      <group>
+                        <field name="name" widget="html"/>
+                      </group>
+                      <notebook>
+                        <page string="Eleves">
+                          <field name="eleve_ids">
+                            <tree>
+                              <field name="name"/>
+                              <field name="prenom"/>
+                              <field name="age"/>
+                            </tree>
+                          </field>
+                        </page>
+                        <page string="Prof">
+                          <field name="prof_ids">
+                            <tree>
+                              <field name="name"/>
+                              <field name="age"/>
+                              <field name="retraite"/>
+                            </tree>
+                          </field>
+                        </page>
+                      </notebook>
+                    </sheet>
+                  </form>
+                </field>
+              </record>
+
+
+
+              <record model="ir.ui.view" id="section_search_view">
+                <field name="name">section.search</field>
+                <field name="model">ecole.section</field>
+                <field name="arch" type="xml">
+                  <search>
+                    <field name="name"/>
+                  </search>
+                </field>
+              </record>
+
+              <record model="ir.actions.act_window" id="section_list_action">
+                <field name="name">Section</field>
+                <field name="res_model">ecole.section</field>
+                <field name="view_type">form</field>
+                <field name="view_mode">tree,form</field>
+                <field name="help" type="html">
+                  <p class="oe_view_nocontent_create">Create the first section</p>
+                </field>
+              </record>
+
+              <menuitem id="section_view" name="Section"
+                        parent="ecole_menu"
+                        action="section_list_action"/>
+
+
+
+<!-- wizard-->
+
+    <record model="ir.ui.view" id="wizard_form_view">
+         <field name="name">wizard.form</field>
+         <field name="model">ecole.wizard</field>
+         <field name="arch" type="xml">
+             <form string="Add teacher">
+                 <group>
+                     <field name="cours_id"/>
+                     <field name="prof_ids"/>
+                 </group>
+             </form>
+         </field>
+     </record>
+
+     <act_window id="launch_session_wizard"
+                 name="Add teacher"
+                 src_model="ecole.cours"
+                 res_model="ecole.wizard"
+                 view_mode="form"
+                 target="new"
+                 key2="client_action_multi"/>
+
+
+  </data>
+</odoo>

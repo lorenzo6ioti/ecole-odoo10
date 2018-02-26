@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <report
+      id="report_cours"
+      model="ecole.cours"
+      string="Details Cours"
+      report_type="qweb-html"
+      name="ecole.report_courses"
+      file="ecole.report_courses"
+      attachment_use="False"
+      attachment=""
+    />
+
+
+  </data>
+</odoo>
