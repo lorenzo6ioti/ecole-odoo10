@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <report
+      id="report_eleve"
+      model="ecole.eleve"
+      string="Infos élève"
+      report_type="qweb-html"
+      name="ecole.report_eleves"
+      file="ecole.report_eleves"
+      attachment_use="False"
+      attachment=""
+    />
+
+
+  </data>
+</odoo>

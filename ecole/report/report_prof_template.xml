@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_prof_doc">
+          <t t-call="report.external_layout">
+            <div class="page">
+              <h2>Details du Professeur</h2>
+
+              <h3>Nom du prof</h3>
+               <p><span t-field="doc.name"/></p>
+
+              <h3>Age</h3>
+              <p> <span t-field="doc.age"/></p>
+              <h3>Date de naissance</h3>
+              <p> <span t-field="doc.date_naissance"/></p>
+              <h3>Statut du prof</h3>
+              <p>Retraité : <span t-field="doc.retraite"/></p>
+              <h3>Section</h3>
+              <p> <span t-field="doc.section_id"/></p>
+
+              <h3>Liste des cours dont il est titulaire</h3>
+              <t t-foreach="doc.cours_ids" t-as="el">
+               <p><span t-field="el.name"/></p>
+             </t>
+            </div>
+          </t>
+  </template>
+
+  <template id="report_profs">
+    <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="doc">
+            <t t-call="ecole.report_prof_doc"/>
+        </t>
+    </t>
+</template>
+
+</odoo>

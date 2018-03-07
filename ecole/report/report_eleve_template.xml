@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_eleve_doc">
+          <t t-call="report.external_layout">
+            <div class="page">
+              <h2>Détails de l'élève</h2>
+
+              <h3>Nom de l'élève</h3>
+              <p><span t-field="doc.name"/><span t-field="doc.prenom"/></p>
+              <h3>Prénom de l'élève</h3>
+              <p> <span t-field="doc.prenom"/></p>
+              <h3>Age</h3>
+              <p> <span t-field="doc.age"/></p>
+              <h3>Section</h3>
+              <p> <span t-field="doc.section_id"/></p>
+
+              <h4>Liste des cours auquels il est inscrit</h4>
+
+                <table class="table table-condensed">
+                  <thead>
+                    <tr>
+                      <th>Description</th>
+                        <th class="text-right">Titulaire</th>
+                      <th class="text-right">Nombre de places</th>
+                      <th class="text-right">Places occupées</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <t t-foreach="doc.cours_ids" t-as="el">
+                      <td><span t-field="el.name"/></td>
+                    </t>
+                  </tbody>
+              </table>
+
+            </div>
+         </t>
+  </template>
+
+  <template id="report_eleves">
+    <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="doc">
+            <t t-call="ecole.report_eleve_doc"/>
+        </t>
+    </t>
+</template>
+
+</odoo>

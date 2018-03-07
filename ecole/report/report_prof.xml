@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <report
+      id="report_prof"
+      model="ecole.prof"
+      string="Details Prof"
+      report_type="qweb-html"
+      name="ecole.report_profs"
+      file="ecole.report_profs"
+      attachment_use="False"
+      attachment=""
+    />
+
+
+  </data>
+</odoo>

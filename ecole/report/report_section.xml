@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <report
+      id="report_section"
+      model="ecole.section"
+      string="Details Section"
+      report_type="qweb-html"
+      name="ecole.report_sections"
+      file="ecole.report_sections"
+      attachment_use="False"
+      attachment=""
+    />
+
+
+  </data>
+</odoo>
