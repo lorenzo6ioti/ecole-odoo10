@@ -10,15 +10,45 @@
                <p><span t-field="doc.name"/></p>
 
               <h3>Liste des profs de la section</h3>
+              <table class="table table-condensed">
+                <thead>
+                  <tr>
+                    <th>Nom</th>
+                    <th class="text-right">Age</th>
+                    <th class="text-right">Section</th>
+                  </tr>
+                </thead>
+                <tbody>
               <t t-foreach="doc.prof_ids" t-as="el">
-               <p><span t-field="el.name"/></p>
+                <tr>
+               <td><span t-field="el.name"/></td>
+               <td class="text-right"><span t-field="el.age"/></td>
+               <td class="text-right"><span t-field="el.section_id"/></td>
+             </tr>
              </t>
+           </tbody>
+         </table>
 
 
               <h3>Liste des élèves inscrits</h3>
+              <table class="table table-condensed">
+                <thead>
+                  <tr>
+                    <th>Nom</th>
+                    <th class="text-right">Prenom</th>
+                    <th class="text-right">Section</th>
+                  </tr>
+                </thead>
+                <tbody>
               <t t-foreach="doc.eleve_ids" t-as="el">
-               <p><span t-field="el.name"/></p>
+                <tr>
+               <td><span t-field="el.name"/></td>
+               <td class="text-right"><span t-field="el.prenom"/></td>
+               <td class="text-right"><span t-field="el.section_id"/></td>
+             </tr>
              </t>
+           </tbody>
+         </table>
             </div>
           </t>
   </template>

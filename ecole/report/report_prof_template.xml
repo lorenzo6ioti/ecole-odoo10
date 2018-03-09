@@ -19,9 +19,25 @@
               <p> <span t-field="doc.section_id"/></p>
 
               <h3>Liste des cours dont il est titulaire</h3>
-              <t t-foreach="doc.cours_ids" t-as="el">
-               <p><span t-field="el.name"/></p>
-             </t>
+
+             <table class="table table-condensed">
+               <thead>
+                 <tr>
+                   <th>Nom</th>
+                   <th class="text-right">Nombre d'heures</th>
+                   <th class="text-right">Date de début</th>
+                 </tr>
+               </thead>
+               <tbody>
+             <t t-foreach="doc.cours_ids" t-as="el">
+               <tr>
+              <td><span t-field="el.name"/></td>
+              <td class="text-right"><span t-field="el.nbHeures"/></td>
+              <td class="text-right"><span t-field="el.date_debut"/></td>
+            </tr>
+            </t>
+          </tbody>
+        </table>
             </div>
           </t>
   </template>

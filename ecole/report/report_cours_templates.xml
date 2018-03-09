@@ -1,24 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <template id="report_cours_document">
+    <template id="report_cours_doc">
           <t t-call="report.external_layout">
             <div class="page">
               <h2>Details du cours</h2>
-              <p>Le nom de ce cours est : <span t-field="doc.name"/></p>
-              <p>Le titulaire de ce cours est : <span t-field="doc.titulaire_id"/></p>
-              <p>Le nombre d'élèves est de : <span t-field="doc.nbEleves"/></p>
-              <p>Le nombre de places est de : <span t-field="doc.nbPlaces"/></p>
-              <p> Statut de la classe :</p>
+
+              <h3>Nom du cours</h3>
+              <p> <span t-field="doc.name"/></p>
+
+              <h3>Titulaire du cours</h3>
+              <p> <span t-field="doc.titulaire_id"/></p>
+
+              <h3>Nombre d'élèves</h3>
+              <p> <span t-field="doc.nbEleves"/></p>
+
+              <h3>Nombre de places</h3>
+                <p><span t-field="doc.nbPlaces"/></p>
+
+              <h3> Statut de la classe</h3>
               <p t-if="doc.nbPlaces == doc.nbEleves">La classe est complète</p>
               <p t-if="doc.nbPlaces != doc.nbEleves"> La classe n'est pas complète : d'autres élèves peuvent encore s'inscrire</p>
-              <p>Le pourcentage de places occupées est de : <span t-field="doc.taken_seats"/> %</p>
-              <p>La date de début du cours est : <span t-field="doc.date_debut"/></p>
-              <p>Le nombre d'heures est : <span t-field="doc.nbHeures"/></p>
-              <p>La liste des élèves est la suivante :</p>
-              <t t-foreach="doc.eleve_ids" t-as="el">
-               <p><span t-field="el.name"/> <span t-field="el.prenom"/></p>
-             </t>
+
+              <h3>Pourcentage de places occupées</h3>
+              <p><span t-field="doc.taken_seats"/> %</p>
+
+              <h3>Date du premier cours</h3>
+              <p> <span t-field="doc.date_debut"/></p>
+
+              <h3>Nombre d'heures</h3>
+              <p><span t-field="doc.nbHeures"/></p>
+
+              <h3>Liste des élèves</h3>
+
+             <table class="table table-condensed">
+               <thead>
+                 <tr>
+                   <th>Nom</th>
+                   <th class="text-right">Prenom</th>
+                   <th class="text-right">Section</th>
+                 </tr>
+               </thead>
+               <tbody>
+             <t t-foreach="doc.eleve_ids" t-as="el">
+               <tr>
+              <td><span t-field="el.name"/></td>
+              <td class="text-right"><span t-field="el.prenom"/></td>
+              <td class="text-right"><span t-field="el.section_id"/></td>
+            </tr>
+            </t>
+          </tbody>
+        </table>
             </div>
           </t>
   </template>
@@ -26,7 +58,7 @@
   <template id="report_courses">
     <t t-call="report.html_container">
         <t t-foreach="docs" t-as="doc">
-            <t t-call="ecole.report_cours_document"/>
+            <t t-call="ecole.report_cours_doc"/>
         </t>
     </t>
 </template>

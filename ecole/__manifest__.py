@@ -31,6 +31,12 @@
         'views/ecole.xml',
         'report/report_cours.xml',
         'report/report_cours_templates.xml',
+        'report/report_section.xml',
+        'report/report_section_template.xml',
+        'report/report_prof.xml',
+        'report/report_prof_template.xml',
+        'report/report_eleve.xml',
+        'report/report_eleve_template.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

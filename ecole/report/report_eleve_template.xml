@@ -7,7 +7,7 @@
               <h2>Détails de l'élève</h2>
 
               <h3>Nom de l'élève</h3>
-              <p><span t-field="doc.name"/><span t-field="doc.prenom"/></p>
+              <p><span t-field="doc.name"/></p>
               <h3>Prénom de l'élève</h3>
               <p> <span t-field="doc.prenom"/></p>
               <h3>Age</h3>
@@ -15,12 +15,12 @@
               <h3>Section</h3>
               <p> <span t-field="doc.section_id"/></p>
 
-              <h4>Liste des cours auquels il est inscrit</h4>
+              <h3>Liste des cours auquels il est inscrit</h3>
 
                 <table class="table table-condensed">
                   <thead>
                     <tr>
-                      <th>Description</th>
+                      <th>Nom</th>
                         <th class="text-right">Titulaire</th>
                       <th class="text-right">Nombre de places</th>
                       <th class="text-right">Places occupées</th>
@@ -29,6 +29,9 @@
                   <tbody>
                     <t t-foreach="doc.cours_ids" t-as="el">
                       <td><span t-field="el.name"/></td>
+                        <td class="text-right"><span t-field="el.titulaire_id"/></td>
+                      <td class="text-right"><span t-field="el.nbPlaces"/></td>
+                      <td class="text-right"><span t-field="el.nbEleves"/></td>
                     </t>
                   </tbody>
               </table>
